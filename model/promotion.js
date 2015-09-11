@@ -1,5 +1,5 @@
-function Promotion(type,percents) {
-    this.type = type;
+function Promotion(type, percents) {
+  this.type = type;
   this.percents = percents;
 }
 
