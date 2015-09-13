@@ -3,12 +3,12 @@ function Classify() {
 }
 
 Classify.prototype.group = function(bookIds) {
-  var groupObject = {};
+  var classifyResult = {};
 
   bookIds.forEach(function(bookId) {
-    groupObject[bookId] = groupObject[bookId] + 1|| 1;
+    classifyResult[bookId] = classifyResult[bookId] + 1|| 1;
   });
-  return groupObject;
+  return classifyResult;
 };
 
 module.exports = Classify;
