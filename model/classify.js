@@ -3,20 +3,12 @@ function Classify() {
 }
 
 Classify.prototype.group = function(bookIds) {
-  var groupResult = [];
-  var groupTemp = {};
-  var judgeResult;
+  var groupObject = {};
 
-  book_ids.forEach(function(bookId) {
-    judgeExist(bookId,groupResult);
+  bookIds.forEach(function(bookId) {
+    groupObject[bookId] = groupObject[bookId] + 1|| 1;
   });
-  return groupResult;
+  return groupObject;
 };
-
-function judgeExist(bookId,groupResult) {
-  groupResult.forEach(function(groupTemp) {
-    groupTemp[bookId] = groupTemp[bookId] + 1 || 1;
-  })
-}
 
 module.exports = Classify;
