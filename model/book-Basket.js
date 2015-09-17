@@ -1,4 +1,3 @@
-//var promotions = require("./helper/allPrpmotions.js");
 
 function BookBasket() {
 
