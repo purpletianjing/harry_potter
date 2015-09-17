@@ -8,7 +8,7 @@ beforeEach(function() {
 
 describe("Classify",function() {
   var classify = new Classify();
-  var classifyResult = {1:2,2:3,3:2,4:1,5:1};
+  var classifyResult = [{id:1,num:2},{id:2,num:3},{id:3,num:2},{id:4,num:1},{id:5,num:1}];
   describe("function",function() {
     it("group",function() {
       expect(classify.group(bookIds)).toEqual(classifyResult);
