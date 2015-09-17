@@ -4,14 +4,13 @@ function BookBasket() {
 
 }
 
+function sortBy(a,b){
+  return b.num - a.num;
+}
+
 BookBasket.prototype.computePromotions = function (classifyResult) {
-  var bookMark = 0;
-  for (var object in classifyResult) {
-    if (classifyResult[object] >= 1) {
-      classifyResult[object]--;
-      bookMark++;
-    }
-  }
+  classifyResult.sort(sortBy);
+  return classifyResult;
 };
 
 module.exports = BookBasket;
