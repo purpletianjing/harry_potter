@@ -1,4 +1,7 @@
-var main = require("../../model/main.js");
+var pos = require("../../model/main.js");
+var allPromotions = require("../../model/helper/allPromotions.js");
+var allBooks = require("../../model/helper/allBooks.js");
+var SettleMent = require("../../model/settle-ment.js");
 
 var totalPrice = 51.6;
 var bookIds = [];
@@ -9,6 +12,8 @@ beforeEach(function() {
 
 describe("function",function() {
   it("main",function(){
-    expect(main(bookIds)).toBe(totalPrice);
+    SettleMent.getPromotions(allPromotions);
+    SettleMent.getBooks(allBooks);
+    expect(pos(bookIds)).toBe(totalPrice);
   })
 });
