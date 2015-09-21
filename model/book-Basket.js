@@ -1,4 +1,3 @@
-
 function BookBasket() {
 
 }
@@ -31,7 +30,6 @@ function computeEveryPromotion(results,promotionBooks) {
 BookBasket.prototype.computePromotions = function (classifyResult) {
   var promotionBooks = [];
   var results = classifyResult.sort(sortBy);
-  var length = 0;
   var num = results[results.length-1].num;
 
   for(var i = 0; i < num; i++) {
