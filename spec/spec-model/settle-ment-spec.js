@@ -20,7 +20,7 @@ describe("SettleMent", function () {
     SettleMent.getPromotions(allPromotions);
     SettleMent.getBooks(allBooks);
 
-    it("getPromotionPrice", function () {
+    it("getPromotionPercents", function () {
       settleMent.getBookInventory(count);
       settleMent.getPromotionPercents();
 
