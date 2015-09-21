@@ -5,8 +5,13 @@ var SettleMent = require("./settle-ment.js");
 function main(bookIds) {
   var classify = new Classify();
   var bookBasket = new BookBasket();
+  var settleMent = new SettleMent();
 
   var classifyResult = classify.group(bookIds);
   var promotionBooks = bookBasket.computePromotions(classifyResult);
-
+  settleMent.getBookInventory(promotionBooks);
+  settleMent.getPromotionPercents();
+  var totalPrice = settleMent.getTotalPrice();
 }
+
+module.exports = main;
