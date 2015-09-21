@@ -29,6 +29,6 @@ describe("SettleMent", function () {
 
     it("getTotalPrice",function() {
       expect(settleMent.getTotalPrice()).toBe(totalPrice);
-    })
+    });
   });
 });
