@@ -2,7 +2,8 @@ var Classify = require("./classify.js");
 var BookBasket = require("./book-Basket.js");
 var SettleMent = require("./settle-ment.js");
 
-function main(bookIds) {
+
+function pos(bookIds) {
   var classify = new Classify();
   var bookBasket = new BookBasket();
   var settleMent = new SettleMent();
@@ -12,6 +13,7 @@ function main(bookIds) {
   settleMent.getBookInventory(promotionBooks);
   settleMent.getPromotionPercents();
   var totalPrice = settleMent.getTotalPrice();
+  return totalPrice;
 }
 
-module.exports = main;
+module.exports = pos;
