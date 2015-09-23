@@ -4,7 +4,6 @@ var allPromotions = require("../../model/helper/allPromotions.js");
 var bookInventory = [];
 var count = [];
 var promotions = [];
-var totalPrice = 108;
 
 describe("SettleMent", function () {
   beforeEach(function () {
@@ -33,9 +32,30 @@ describe("SettleMent", function () {
   describe("get total price by promotion strategy",function() {
     var settleMent = new SettleMent();
     settleMent.setPromotions(allPromotions);
+
     it("53 change to 44",function() {
       settleMent.setBookInventory(count);
-      expect(settleMent.getTotalPrice()).toBe(totalPrice);//totalPrice = 108;
+      expect(settleMent.getTotalPrice()).toBeCloseTo(totalPrice,1);
+    });
+
+    it("one book", function () {
+      settleMent.setBookInventory([0,1]);
+      expect(settleMent.getTotalPrice()).toBeCloseTo(8,1);
+    });
+
+    it("two different books",function() {
+      settleMent.setBookInventory([0,0,1]);
+      expect(settleMent.getTotalPrice()).toBeCloseTo(8*2*(1-0.05),1);
+    });
+
+    it("three different books",function() {
+      settleMent.setBookInventory([0,0,0,1]);
+      expect(settleMent.getTotalPrice()).toBeCloseTo(8*3*(1-0.1),1);
+    });
+
+    it("two different books and one kinds more than 1",function() {
+      settleMent.setBookInventory([0,0,0,0,2,0]);
+      expect(settleMent.getTotalPrice()).toBeCloseTo(4*8*2*(1-0.2),1);
     });
   });
 });
