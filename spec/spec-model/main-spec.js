@@ -7,13 +7,13 @@ var totalPrice = 51.6;
 var bookIds = [];
 
 beforeEach(function() {
-  bookIds = [1,2,3,1,2,4,5,3,2];
+  bookIds = [1,2,3,1,2,4,5,3,2,1,1,1,2,3,4,1];
 })
 
 describe("function",function() {
   it("main",function(){
-    SettleMent.getPromotions(allPromotions);
-    SettleMent.getBooks(allBooks);
+    SettleMent.setPromotions(allPromotions);
+    SettleMent.setBooks(allBooks);
     expect(pos(bookIds)).toBe(totalPrice);
-  })
+  });
 });
