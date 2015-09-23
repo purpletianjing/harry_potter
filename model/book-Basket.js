@@ -2,39 +2,52 @@ function BookBasket() {
 
 }
 
-function sortBy(a,b){
+function sortBy(a, b) {
   return a.num - b.num;
 }
 
-function reduceNum(results,countObject) {
-  for(var i = 0; i < results.length; i++) {
-    if(results[i].num > 0) {
+function reduceNum(results, countObject) {
+  var count = 0;
+  for (var i = 0; i < results.length; i++) {
+    if (results[i].num > 0) {
       results[i].num--;
-      countObject.count++;
-      countObject.bookIds.push(results[i].id);
-    } else  {
+      count++;
+    } else {
       delete results[i];
     }
   }
+  return count;
 }
 
-function computeEveryPromotion(results,promotionBooks) {
-  var countObject = {count:0,bookIds:[]};
-  results = results.filter(function(result) {
+function computeEveryPromotion(results, promotionBooks) {
+
+  results = results.filter(function (result) {
     return result.num > 0;
   });
-  reduceNum(results,countObject);
-  promotionBooks.push(countObject);
+  var index = reduceNum(results);
+  promotionBooks[index]++;
+}
+
+function findMostPromotions(promotionBooks) {
+  var minIndex = promotionBooks[3] > promotionBooks[5] ? promotionBooks[5] : promotionBooks[3];
+  for (var i = minIndex; i > 0; i--) {
+    promotionBooks[3]--;
+    promotionBooks[5]--;
+    promotionBooks[4] += 2;
+  }
 }
 
 BookBasket.prototype.computePromotions = function (classifyResult) {
-  var promotionBooks = [];
+  var promotionBooks = [0, 0, 0, 0, 0, 0];
   var results = classifyResult.sort(sortBy);
-  var num = results[results.length-1].num;
+  var num = results[results.length - 1].num;
 
-  for(var i = 0; i < num; i++) {
-    computeEveryPromotion(results,promotionBooks);
+  for (var i = 0; i < num; i++) {
+    computeEveryPromotion(results, promotionBooks);
   }
+
+  findMostPromotions(promotionBooks);
+  console.log(promotionBooks);
   return promotionBooks;
 };
 
