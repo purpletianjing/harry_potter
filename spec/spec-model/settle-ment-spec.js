@@ -35,7 +35,7 @@ describe("SettleMent", function () {
 
     it("53 change to 44",function() {
       settleMent.setBookInventory(count);
-      expect(settleMent.getTotalPrice()).toBeCloseTo(totalPrice,1);
+      expect(settleMent.getTotalPrice()).toBeCloseTo(108,1);
     });
 
     it("one book", function () {
