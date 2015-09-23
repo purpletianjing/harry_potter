@@ -27,8 +27,6 @@ function getPercentByIndex(index,promotions) {
 SettleMent.prototype.getTotalPrice = function() {
   var totalPrice = 0;
   var promotions = this.promotions;
-  var bookInventory = this.bookInventory;
-  console.log(bookInventory);
   this.bookInventory.forEach(function(value,index) {
     if(value !== 0) {
       percents = getPercentByIndex(index,promotions);
