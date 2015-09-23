@@ -1,64 +1,41 @@
 function SettleMent() {
   this.bookInventory = [];
+  this.promotions = [];
 }
 
 var promotions = [];
 var books = [];
 
-SettleMent.getPromotions = function(allPromotions) {
-  promotions = allPromotions;
+SettleMent.prototype.setPromotions = function(allPromotions) {
+  this.promotions = allPromotions;
 }
 
-SettleMent.getBooks = function(allBooks) {
-  books = allBooks;
-}
-
-function getEveryPercent(value,promotions) {
-  promotions.forEach(function(promotion) {
-    if(value.count === promotion.num) {
-      value.percents = promotion.percents;
-    }
-  });
-}
-
-SettleMent.prototype.getBookInventory = function(count) {
+SettleMent.prototype.setBookInventory = function(count) {
   this.bookInventory = count;
 }
 
-SettleMent.prototype.getPromotionPercents = function() {
-  this.bookInventory.forEach(function(value) {
-    getEveryPercent(value,promotions);
-  });
-}
-
-function getEveryBookPrice(totalPrice,bookId,percent) {
-  var price;
-  books.forEach(function(book) {
-    if(bookId === book.id) {
-      price = book.price * (1 - percent);
+function getPercentByIndex(index,promotions) {
+  var percents = 0;
+  promotions.forEach(function(promotion) {
+    if(index === promotion.num) {
+      percents = promotion.percents;
     }
-  });
-  return price;
-}
-
-
-function getEveryItemPrice(totalPrice,percent,everyItem) {
-  everyItem.bookIds.forEach(function(bookId) {
-    totalPrice += getEveryBookPrice(totalPrice,bookId,percent);
-  });
-
-  return totalPrice;
+  })
+  return percents;
 }
 
 SettleMent.prototype.getTotalPrice = function() {
   var totalPrice = 0;
-  var percent = 0;
-  this.bookInventory.forEach(function(everyItem) {
-    percent = everyItem.percents;
-    totalPrice = getEveryItemPrice(totalPrice,percent,everyItem);
+  var promotions = this.promotions;
+  var bookInventory = this.bookInventory;
+  console.log(bookInventory);
+  this.bookInventory.forEach(function(value,index) {
+    if(value !== 0) {
+      percents = getPercentByIndex(index,promotions);
+      totalPrice += 8 * value * index * (1 - percents);
+    }
   });
   return totalPrice;
 }
-
 
 module.exports = SettleMent;
