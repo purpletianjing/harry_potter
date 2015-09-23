@@ -47,7 +47,6 @@ BookBasket.prototype.computePromotions = function (classifyResult) {
   }
 
   findMostPromotions(promotionBooks);
-  console.log(promotionBooks);
   return promotionBooks;
 };
 
